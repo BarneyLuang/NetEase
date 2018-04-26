@@ -6,7 +6,7 @@
 #include <QHBoxLayout>
 #include <QCheckBox>
 #include <QLabel>
-
+#include "mysearchview.h"
 SearchWidget::SearchWidget(QWidget *parent) :
 	BasedWidget(parent)
 {
@@ -34,16 +34,9 @@ void SearchWidget::initUi()
 	m_title->setFixedSize(searchTitleSize);
 	m_title->move(0, 0);
 
-	FuncButton *searchButton = new FuncButton(":/buttons/search_btn", this);
-	connect(searchButton, SIGNAL(clicked()), this, SLOT(searchClicked()));
 
-	searchButton->setCapturEnterEvent(false);
-	m_searLineEdit = new QLineEdit(this);
-	m_searLineEdit->setFixedWidth(searchWidgetSize.width() * 0.85);
-	QHBoxLayout *searLayout = new QHBoxLayout;
-	searLayout->addWidget(m_searLineEdit, 0, Qt::AlignLeft | Qt::AlignVCenter);
-	searLayout->addWidget(searchButton, 0, Qt::AlignVCenter);
-	searLayout->addStretch();
+
+    m_searLineEdit = new mysearchview(this);
 
 	m_musicSearch = new QCheckBox("单曲搜索", this);
 	m_aritlsSearch = new QCheckBox("歌手搜索", this);
@@ -68,7 +61,7 @@ void SearchWidget::initUi()
 
 	QVBoxLayout *mainLayout = new QVBoxLayout(this);
 	mainLayout->addSpacing(searchTitleSize.height() + 10);
-	mainLayout->addLayout(searLayout);
+    mainLayout->addWidget(m_searLineEdit);
 	mainLayout->addLayout(searCheck1);
 	mainLayout->addLayout(searCheck2);
 

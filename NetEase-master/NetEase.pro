@@ -56,7 +56,9 @@ SOURCES += \
     src/configure/urlconfigure.cpp \
     src/network/networkgetuserheadimage.cpp \
     src/network/networkradiofm.cpp \
-    src/mainwindow/tools/childlistwidget.cpp
+    src/mainwindow/tools/childlistwidget.cpp \
+    src/mainwindow/searchwidget/mysearchview.cpp \
+    src/mainwindow/tools/animalistwidget.cpp
 
 HEADERS  += \
     src/mainwindow/mainwindow.h \
@@ -95,7 +97,9 @@ HEADERS  += \
     src/network/networkaddmusic.h \
     src/network/networkgetuserheadimage.h \
     src/network/networkradiofm.h \
-    src/mainwindow/tools/childlistwidget.h
+    src/mainwindow/tools/childlistwidget.h \
+    src/mainwindow/searchwidget/mysearchview.h \
+    src/mainwindow/tools/animalistwidget.h
 
 
 
@@ -131,3 +135,5 @@ FILES_COPY_SRC += resource/sql/music.db	\
 	!exists($$dist_file):system($$COPY $$orig_file $$dist)
     }
 }
+
+FORMS +=

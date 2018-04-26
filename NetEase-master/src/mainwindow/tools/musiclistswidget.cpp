@@ -9,18 +9,23 @@
 #include <QRegExp>
 #include "childlistwidget.h"
 #include "QPushButton"
+#include "QtDebug"
 MusicListsWidget::MusicListsWidget(QWidget *parent) : QWidget(parent)
 {
 	setFixedSize(musicListWidgetSize);
-	setAttribute(Qt::WA_TranslucentBackground);
-
+    //setAttribute(Qt::WA_TranslucentBackground);
+//    setStyleSheet("background-color:red;");
     m_musicList = initList("MusicsList");
     m_musicList->addItem(new QListWidgetItem(QIcon(":/menu_icon/netease"),"发现"));
     m_musicList->addItem(new QListWidgetItem(QIcon(":/menu_icon/netease"),"MV"));
+    m_musicList->setFixedHeight(m_musicList->count()*25+20);
+    qDebug()<<m_musicList->count();
+
 
     m_recommendList = initList("MineList");
     m_recommendList->addItem(new QListWidgetItem(QIcon(":/menu_icon/netease"),"本地"));
     m_recommendList->addItem(new QListWidgetItem(QIcon(":/menu_icon/netease"),"Mine"));
+    m_recommendList->setFixedHeight(m_musicList->count()*25+20);
 
     QLabel *recommend_title = new QLabel("推荐");
     recommend_title->setObjectName("RecommendTitle");
@@ -31,15 +36,16 @@ MusicListsWidget::MusicListsWidget(QWidget *parent) : QWidget(parent)
     QPushButton *button = new QPushButton("button");
 
     childlistwidget *recommend_list = new childlistwidget(this,recommend_title,button,m_recommendList);
-    childlistwidget *mine_list  = new childlistwidget(0,mymusic_title,NULL,m_musicList);
+    childlistwidget *mine_list  = new childlistwidget(this,mymusic_title,NULL,m_musicList);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
-    mainLayout->addWidget(recommend_list );
+    mainLayout->addWidget(recommend_list);
     mainLayout->addWidget(mine_list);
 
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
     mainLayout->setMargin(0);
+//    mainLayout->addStretch(0);
 	connect(NetworkManage::sharedNetworkManage(), SIGNAL(musicListInfo(QStringList)),
 			this, SLOT(musicListInfo(QStringList)));
 
@@ -164,6 +170,10 @@ QListWidget *MusicListsWidget::initList(QString name)
     listwidget->setObjectName(name);
     listwidget->horizontalScrollBar()->setVisible(false);
     listwidget->verticalScrollBar()->setVisible(false);
+
+
+    listwidget->setContentsMargins(0, 0, 0, 0);
+    listwidget->setSpacing(0);
 
     connect(listwidget, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
             this, SLOT(itemDoubleClicked(QListWidgetItem*)));

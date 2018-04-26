@@ -14,7 +14,7 @@ const QString APP_NAME = "测试软件";
 const QString APP_VERSION = "1.1.19";
 
 const QSize mainWindowSize(900, 600);
-const QSize mainTitleSize(900, 35);   //35
+const QSize mainTitleSize(900, 50);   //35
 const QSize mainTopWidgetSize(900, 440);
 const QSize mainBootomSize(900, 125);
 

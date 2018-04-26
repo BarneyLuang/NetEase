@@ -2,7 +2,7 @@
 #define SEARCHWIDGET_H
 
 #include "../../basedwidget/basedwidget.h"
-
+#include "mysearchview.h"
 class QCheckBox;
 
 class QLineEdit;
@@ -25,7 +25,7 @@ private:
 	void initConnect();
 
 private:
-	QLineEdit *m_searLineEdit;
+    mysearchview *m_searLineEdit;
 	TitleWidget *m_title;
 
 	QCheckBox *m_musicSearch;

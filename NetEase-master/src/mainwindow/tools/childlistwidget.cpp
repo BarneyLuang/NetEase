@@ -10,7 +10,7 @@ childlistwidget::childlistwidget(QWidget *parent,QLabel *label,QWidget *toolwidg
 
 
     QWidget *mainweidget = new QWidget(this);
-    QWidget *title_widget = new QWidget;
+    QWidget *title_widget = new QWidget(this);
 
     title_widget->setFixedWidth(240);
     QVBoxLayout *mainLayout = new QVBoxLayout(mainweidget);
@@ -27,6 +27,8 @@ childlistwidget::childlistwidget(QWidget *parent,QLabel *label,QWidget *toolwidg
     mainLayout->addWidget(listwidget,0,Qt::AlignRight );
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->addStretch(0);
+
+//    setStyleSheet("background-color:red;");
 }
 
 

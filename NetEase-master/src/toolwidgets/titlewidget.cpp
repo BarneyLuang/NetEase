@@ -5,7 +5,7 @@
 #include <QAction>
 #include <QMenu>
 #include <QHBoxLayout>
-
+#include "../mainwindow/searchwidget/mysearchview.h"
 TitleWidget::TitleWidget(const bool &isMainTitle, QWidget *parent) :
 	BasedStyleShetWidget(parent)
 {
@@ -75,14 +75,18 @@ void TitleWidget::initUi(const bool &isMainTitle)
         buttnLayout->addWidget(skinButton, 0, Qt::AlignVCenter);
         buttnLayout->addWidget(miniButton, 0, Qt::AlignVCenter);
         buttnLayout->addWidget(menuButton, 0, Qt::AlignVCenter);
-
     }
 
     buttnLayout->addWidget(closeButton, 0, Qt::AlignVCenter);
     buttnLayout->setContentsMargins(0, 0, 0, 0);
 
+
+    mysearchview *searchview = new mysearchview(this);
+
     QHBoxLayout *mainLayout = new QHBoxLayout(this);
-    mainLayout->addWidget(titleWidget, 0, Qt::AlignLeft | Qt::AlignTop);
+    mainLayout->addWidget(titleWidget, 0, Qt::AlignLeft | Qt::AlignVCenter);
+    mainLayout->addStretch();
+    mainLayout->addWidget(searchview,0, Qt::AlignVCenter);
     mainLayout->addStretch();
     mainLayout->addWidget(buttonWidget, 0, Qt::AlignRight | Qt::AlignVCenter);
     mainLayout->setContentsMargins(5, 5, 5, 5);

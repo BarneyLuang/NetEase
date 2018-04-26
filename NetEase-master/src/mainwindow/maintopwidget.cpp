@@ -6,6 +6,7 @@
 #include "../network/networkmanage.h"
 #include "tools/musiclistswidget.h"
 #include "tools/userwidget.h"
+#include "tools/animalistwidget.h"
 #include <QVBoxLayout>
 #include <QTableWidget>
 #include <QHeaderView>
@@ -14,7 +15,7 @@
 #include <QList>
 #include <QMenu>
 #include <QScrollBar>
-
+#include <QLabel>
 MainTopWidget::MainTopWidget(QWidget *parent) : QWidget(parent)
 {
 	setFixedSize(mainTopWidgetSize);
@@ -99,9 +100,23 @@ void MainTopWidget::initUi()
 	//m_currentList->horizontalScrollBar()->setVisiable(false);
 	//m_currentList->verticalScrollBar()->setVisiable(false);
 
-	QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    QLabel *label_0 = new QLabel("Label0");
+    QLabel *label_1 = new QLabel("Label1");
+    QLabel *label_2 = new QLabel("Label2");
+    QList<QWidget *> widgetlist ;
+    widgetlist<<label_0<<label_1<<label_2;
+
+    QWidget *funcWidget = new QWidget;
+    QVBoxLayout *funcLayout = new QVBoxLayout(funcWidget);
+    animalistwidget *listWidget = new animalistwidget(this,widgetlist,QSize(500,200));
+
+    funcLayout->addWidget(listWidget);
+    funcLayout->addWidget(m_currentList);
+
+    QHBoxLayout *mainLayout = new QHBoxLayout(this);
 	mainLayout->addWidget(leftWidget, 0, Qt::AlignLeft);
-	mainLayout->addWidget(m_currentList, 0, Qt::AlignRight);
+    mainLayout->addWidget(funcWidget, 0, Qt::AlignRight);
+//	mainLayout->addWidget(m_currentList, 0, Qt::AlignRight);
 	mainLayout->setContentsMargins(0, 0, 10, 0);
 }
 
